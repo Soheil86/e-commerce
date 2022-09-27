@@ -5,9 +5,14 @@ const reviewSchema = mongoose.Schema(
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 )
 
@@ -26,10 +31,6 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
     brand: {
       type: String,
       required: true,
@@ -42,9 +43,9 @@ const productSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    is_best_seller: {
-      type: Boolean,
-      required: false,
+    description: {
+      type: String,
+      required: true,
     },
     reviews: [reviewSchema],
     rating: {
@@ -56,6 +57,10 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    is_best_seller: {
+      type: Boolean,
+      required: false,
     },
     price: {
       type: Number,
@@ -69,7 +74,7 @@ const productSchema = mongoose.Schema(
     },
   },
   {
-    timestamp: true,
+    timestamps: true,
   }
 )
 
